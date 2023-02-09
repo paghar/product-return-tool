@@ -1,0 +1,2 @@
+export const INSERT_FORMD_DATA = "INSERT_FORMD_DATA";
+export const GET_FORMD_DATA = "GET_FORMD_DATA";

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>>>> RadioButton ++++ Snapshot RadioButton 1`] = `
+<div>
+  <input
+    checked={true}
+    id="Radio1"
+    name="RadioBtn1"
+    onChange={[MockFunction]}
+    type="radio"
+    value="RadioBtn1"
+  />
+  Radio 1
+</div>
+`;

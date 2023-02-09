@@ -1,0 +1,143 @@
+.formStyle {
+  display: "flex";
+  flex-direction: column;
+  max-width: 50%;
+  background: #f4f7f8;
+  margin: 30px auto;
+  padding: 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.deliveryWrapper {
+  border: 2px dashed #109177;
+  padding: 20px;
+}
+
+.radioButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.fieldset {
+  margin-block: 20px;
+}
+
+.input {
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  margin: 10px 0;
+  outline: 0;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+}
+
+.input:focus {
+  background: #d2d9dd;
+}
+
+.button {
+  position: relative;
+  display: block;
+  padding: 19px 39px 18px 39px;
+  color: #fff;
+  margin: 20px auto;
+  background: #1abc9c;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  width: 100%;
+  border: 1px solid #16a085;
+  border-width: 1px 1px 3px;
+  margin-bottom: 10px;
+}
+.button:hover,
+.button:hover {
+  background: #109177;
+}
+
+.radioButton {
+  accent-color: #16a085;
+}
+
+.errorMsg {
+  color: red;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* For Desktop View */
+@media screen and (min-width: 1024px) {
+  .formStyle {
+    max-width: 50%;
+    flex-wrap: wrap;
+  }
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .formStyle {
+    max-width: 60%;
+    flex-wrap: wrap;
+  }
+}
+
+/* For Mobile Portrait View */
+@media screen and (max-device-width: 480px) and (orientation: portrait) {
+  .formStyle {
+    max-width: 70%;
+    flex-wrap: wrap;
+  }
+}
+
+/* For Mobile Landscape View */
+@media screen and (max-device-width: 640px) and (orientation: landscape) {
+  .formStyle {
+    max-width: 70%;
+    flex-wrap: wrap;
+  }
+}
+
+/* For Mobile Phones Portrait or Landscape View */
+@media screen and (max-device-width: 640px) {
+  .formStyle {
+    max-width: 70%;
+    flex-wrap: wrap;
+  }
+}
+
+/* For iPhone 4 Portrait or Landscape View */
+@media screen and (min-device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {
+  .formStyle {
+    max-width: 90%;
+    flex-wrap: wrap;
+  }
+}
+
+/* For iPhone 5 Portrait or Landscape View */
+@media (device-height: 568px) and (device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {
+  .formStyle {
+    max-width: 90%;
+    flex-wrap: wrap;
+  }
+}
+
+/* For iPhone 6 and 6 plus Portrait or Landscape View */
+@media (min-device-height: 667px) and (min-device-width: 375px) and (-webkit-min-device-pixel-ratio: 3) {
+  .formStyle {
+    max-width: 90%;
+    flex-wrap: wrap;
+  }
+}
