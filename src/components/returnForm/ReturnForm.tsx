@@ -5,7 +5,8 @@ import {
     FieldValues,
     SubmitHandler,
     UseFormHandleSubmit,
-    UseFormSetValue
+    UseFormSetValue,
+    useWatch
 } from "react-hook-form";
 import style from "./ReturnForm.module.css";
 import Button from "../ui/button/Button";
@@ -20,6 +21,7 @@ import {
 import {deliveryType} from "../../data/enum";
 import SkuItem from "./SkuItem";
 import {IFiledsetCheckControl,ISelectBoxItem} from "../../data/interface";
+import {validate as uuidValidate} from "uuid";
 
 interface Props {
     control: Control<FieldValues, any>;
@@ -29,8 +31,7 @@ interface Props {
     returnReasons: ISelectBoxItem[];
     setValue:  UseFormSetValue<FieldValues>;    
     deliveryText:string;
-    setDeliveryText:(value:string)=>void;
-    deliveryCodeValidator:(value: any) => boolean,
+    setDeliveryText:(value:string)=>void;  
     getCurrentDelivery: () => string,
     skuItemHandler: () => void,
     fields:any
@@ -47,13 +48,31 @@ const ReturnForm =({
     setFiledsetCheckControls, 
     deliveryText,
     setDeliveryText,
-    deliveryCodeValidator,
     getCurrentDelivery,
     skuItemHandler,
     fields,
     onSubmit,
     handleSubmit
 }:Props)=>{
+
+    const DeliveryValidate = () =>{
+        const value = useWatch({control, name: `deliveryId`});
+        let message = ``;
+       
+        if (getCurrentDelivery() == deliveryType.DeliveryId){
+            if (isNaN(value)){
+                message=`Please Enter number for ${deliveryText}`;
+            }
+        }
+
+        if (getCurrentDelivery() == deliveryType.DeliveryOrderId){
+            if (!uuidValidate(value)){
+                message=`Please Enter UUID format for ${deliveryText}`;
+            }
+        }      
+
+        return <small className={style.errorMsg}>{message}</small>;
+    };  
 
     return(
         <form className={style.formStyle}>
@@ -116,6 +135,7 @@ const ReturnForm =({
                                     setValue("deliveryId", undefined);
                                     onChange(value);
                                     setDeliveryText(text);
+                                    skuItemHandler();
                                 }}
                             />
                         )}
@@ -128,8 +148,7 @@ const ReturnForm =({
                         name="deliveryId"
                         defaultValue={""}
                         rules={{
-                            required: true,
-                            validate: deliveryCodeValidator,
+                            required: true,                          
                         }}
                         render={({field: {onChange,value}}) => (
                             <TextBox
@@ -145,14 +164,14 @@ const ReturnForm =({
                         )}
                     />
 
-                    {errors.deliveryId && errors.deliveryId.type === "required" && (
-                        <small className={style.errorMsg}>Please Enter Your {`${deliveryText}`}</small>
-                    )}
-
-                    {errors.deliveryId && errors.deliveryId.type === "validate" && (
-                        <small className={style.errorMsg}>Check {`${deliveryText}`} Format.</small>
-                    )}
+                    {errors.deliveryId && <small className={style.errorMsg}>{`Please Enter a ${deliveryText}`}</small>}
+                    {<DeliveryValidate/>}
+                    
                 </div>
+
+                {errors.items && (errors as any).items[0]?.isSelected && (
+                    <small className={style.errorMsg}>Which Product Do You Want to Return?</small>
+                )}
 
                 {fields.map((skuItem: any, index: number) => (
                     <SkuItem
@@ -168,8 +187,7 @@ const ReturnForm =({
                     />
                 ))}
 
-            </div>
-           
+            </div>           
 
             <Button
                 type="button"

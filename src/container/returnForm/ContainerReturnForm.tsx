@@ -8,7 +8,6 @@ import {
     warehouses,
 } from "../../data/constants";
 import {deliveryType} from "../../data/enum";
-import {validate as uuidValidate} from "uuid";
 import {useDispatch} from "react-redux";
 import {insertFormData} from "../../redux";
 import {useRouter} from "next/router";
@@ -40,13 +39,6 @@ export default function ContainerReturnForm() {
         reset({delivery: "DeliveryId"});
     }, []);  
 
-    const deliveryCodeValidator = (value: any) => {
-        const selectedDelivery = getCurrentDelivery();
-        if (selectedDelivery == deliveryType.DeliveryId) return !isNaN(value);
-
-        return uuidValidate(value);
-    };
-
     const fillFiedlsetCheckBoxControlItems = (input: number) => {
         const fieldsetCheckItems = new Array(input).fill(null).map((_, index) => {
             return {index, status: false};
@@ -77,7 +69,6 @@ export default function ContainerReturnForm() {
     };
 
     const skuItemHandler = () => {
-        if (!deliveryCodeValidator(getCurrentDeliveryId())) return;
 
         const selectedDelivery = getCurrentDelivery();
         if (selectedDelivery == deliveryType.DeliveryId) {
@@ -118,8 +109,7 @@ export default function ContainerReturnForm() {
             setValue={setValue}
             returnReasons={returnReasons}           
             deliveryText={deliveryText}
-            setDeliveryText={setDeliveryText}
-            deliveryCodeValidator={deliveryCodeValidator}
+            setDeliveryText={setDeliveryText}           
             getCurrentDelivery={getCurrentDelivery}
             skuItemHandler={skuItemHandler}
             fields={fields}

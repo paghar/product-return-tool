@@ -47,11 +47,11 @@ const SkuItem = ({
 
     const sku = (productId:number) => products.find(item => item.id == productId)?.sku;
 
-    return (
+    return (                
         <fieldset
             disabled={!filedsetCheckControls[index].status}
             className={style.fieldset}
-        >
+        >               
             <legend>
                 <Controller
                     control={control}
@@ -157,12 +157,8 @@ const SkuItem = ({
                         placeholder="Annotation"
                     />
                 )}
-            />
-
-            {errors.items && (errors as any).items[index]?.annotation && (
-                <small className={style.errorMsg}>Please Enter The Annotation</small>
-            )}
-        </fieldset>
+            />            
+        </fieldset>     
     );
 };
 
