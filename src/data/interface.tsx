@@ -17,54 +17,27 @@ export interface IOrder{
     quantity:number,
 }
 
-export interface ISkuItem {
-    deliveryId:number,
-    deliveryOrderId:string,
-    id:number,
-    name?:number,
-    productId:number,
-    quantity:number,
-    sku?:string, 
-
-    skuChecked:boolean,
-    newQuantity:string,
-    reasonsId:number,
-    annotations:string        
+export interface IReturnSkuItemModel {
+    isSelected: boolean;
+    newQuantity: number;
+    quantity:number
+    reason: number;
+    reasonText: string;
+    annotation: string;
+    productId:number
 }
-
-export interface IReturnFormData{
-    logidticansId:number,
-    warehouseId:number,
-    deliveryId:number,
-    deliveryOrderId:string,
-    skuData:ISkuItem[],
-}
-
-export interface IFormValidate{
-    isError:boolean,
-    error:string,
-    elementId:string
-
-}
-
-
-
-
 
 export interface IReturnModel {
     logisticanId: number;
-    logisticanText: number;
+    logisticanText?: string;
     warehouseId: number;
-    warehouseText: number;
+    warehouseText?: string;
     delivery: string;
     deliveryId: string;
     items: Array<IReturnSkuItemModel>;
-  }
-  
-  export interface IReturnSkuItemModel {
-    isSelected: boolean;
-    newQuantity: number;
-    reason: number;
-    reasonText: number;
-    annotation: string;
-  }
+}
+
+export interface IFiledsetCheckControl{
+    index:number,
+    status:boolean,
+}
